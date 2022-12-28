@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://blog.52xks.cn</id>
+    <title>O&amp;M Career</title>
+    <updated>2022-12-28T07:30:05.038Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="https://blog.52xks.cn"/>
+    <link rel="self" href="https://blog.52xks.cn/atom.xml"/>
+    <subtitle>My Blog</subtitle>
+    <logo>https://blog.52xks.cn/images/avatar.png</logo>
+    <icon>https://blog.52xks.cn/favicon.ico</icon>
+    <rights>All rights reserved 2022, O&amp;M Career</rights>
+    <entry>
+        <title type="html"><![CDATA[Docker 搭建签到]]></title>
+        <id>https://blog.52xks.cn/post/docker-da-jian-qian-dao/</id>
+        <link href="https://blog.52xks.cn/post/docker-da-jian-qian-dao/">
+        </link>
+        <updated>2021-01-20T07:19:15.000Z</updated>
+        <content type="html"><![CDATA[<p>1、若您安装过<strong>docker</strong>，需要先删掉，之后再安装依赖:</p>
+<pre><code class="language-shell">sudo yum remove docker docker-common docker-selinux docker-engine
+sudo yum install -y yum-utils device-mapper-persistent-data lvm2
+</code></pre>
+<p>2、根据版本不同，下载repo文件。您使用的发行版： CentOS/RHEL</p>
+<pre><code class="language-shell">wget -O /etc/yum.repos.d/docker-ce.repo https://mirrors.huaweicloud.com/docker-ce/linux/centos/docker-ce.repo
+</code></pre>
+<p>​	软件仓库地址替换为：</p>
+<pre><code class="language-shell">sudo sed -i 's+download.docker.com+mirrors.huaweicloud.com/docker-ce+' /etc/yum.repos.d/docker-ce.repo
+</code></pre>
+<p>3、更新索引文件并安装</p>
+<pre><code class="language-shell">sudo yum makecache fast
+sudo yum install docker-ce
+</code></pre>
+<p>4、启动Docker</p>
+<pre><code class="language-shell">systemctl  start docker
+systemctl enable docker
+</code></pre>
+<blockquote>
+<p>docker镜像地址：https://hub.docker.com/r/asdaragon/qiandao<br>
+项目地址：https://github.com/AragonSnow/qiandao</p>
+</blockquote>
+<p>5、拉取镜像	Docker Pull Command</p>
+<pre><code class="language-shell">docker pull asdaragon/qiandao
+</code></pre>
+<p>6、运行签到容器，挂载宿主机目录</p>
+<pre><code class="language-shell">docker run -d --name qiandao -p 12345:80 -v $(pwd)/qiandao/config:/usr/src/app/config  asdaragon/qiandao
+</code></pre>
+<blockquote>
+<p>数据库备份指令：<code>docker cp 容器名:/usr/src/app/config/database.db .</code><br>
+数据库恢复指令：<code>docker cp database.db 容器名:/usr/src/app/config/</code></p>
+</blockquote>
+<p>项目引用:<br>
+https://gitee.com/qiandao-today/templates<br>
+https://post.smzdm.com/p/a83g4wxl/<br>
+https://qiandao.xiguan.net/tpls/public</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[盘点支持 Linux 的国产软件]]></title>
+        <id>https://blog.52xks.cn/post/pan-dian-zhi-chi-linux-de-ruan-jian/</id>
+        <link href="https://blog.52xks.cn/post/pan-dian-zhi-chi-linux-de-ruan-jian/">
+        </link>
+        <updated>2020-09-21T07:05:25.000Z</updated>
+        <content type="html"><![CDATA[<h2 id="网易云音乐"><strong>网易云音乐</strong></h2>
+<p><img src="https://blog.52xks.cn/post-images/1600672152825.png" alt="" loading="lazy"><br>
+下载链接：https://music.163.com/#/download<br>
+支持平台：deepin15（64位）ubuntu18.04（64位）</p>
+<h2 id="搜狗输入法"><strong>搜狗输入法</strong></h2>
+<p><img src="https://blog.52xks.cn/post-images/1600672280787.png" alt="" loading="lazy"><br>
+下载链接：https://pinyin.sogou.com/linux<br>
+支持平台：Ubuntu、Ubuntukylin 2004 / 1910 / 1804 / 1604<br>
+2020-08-24  搜狗输入法 for Linux v2.3.2.07<br>
+1、稳定支持Ubuntu2004系统。<br>
+2、全新支持高分屏显示。<br>
+3、整合拼音和五笔输入法，一键切换，更方便。<br>
+4、优化输入法整体架构，大幅提升输入法性能。<br>
+5、优化输入法依赖库。</p>
+<h2 id="有道词典"><strong>有道词典</strong></h2>
+<p><img src="https://blog.52xks.cn/post-images/1600672583009.png" alt="" loading="lazy"><br>
+下载链接：http://cidian.youdao.com/multi.html#linuxAll<br>
+支持平台：Deepin(amd64)版 银河麒麟(arm64)版 中标麒麟龙芯(mips64)版 Ubuntu(amd64)版<br>
+中标麒麟兆芯(x86_64)版 二进制软件包(32位) 二进制软件包(64位)</p>
+<h2 id="wps"><strong>WPS</strong></h2>
+<p><img src="https://blog.52xks.cn/post-images/1600672920839.png" alt="" loading="lazy"><br>
+下载链接：https://www.wps.cn/product/wpslinux<br>
+支持平台：根据需要下载deb/rpm格式的安装包<br>
+WPS Office 2019 For Linux（11.1.0.9615）更新说明<br>
+WPS公共：<br>
+优化界面绘制相关api的调用效率<br>
+适配ibus和fcitx框架的输入法，解决无法输入中文，预输入显示等问题<br>
+支持阿拉伯语、藏语的排版和编辑<br>
+支持插入PDF、压缩文件的OLE对象<br>
+解决Fedora平台打印机无法使用的问题<br>
+修复fcitx5输入法及wayland下的ibus输入法无法输入中文的问题<br>
+WPS文字：<br>
+支持插入长度为3个字符的带圈字符及长度为3个字符的带圈项目编号<br>
+优化大表格滚屏卡顿、排序耗时等性能问题<br>
+WPS演示：<br>
+升级ffmpeg版本，优化音频、视频的插入、播放、裁剪等功能</p>
+<h2 id="qqlinux版"><strong>QQ·Linux版</strong></h2>
+<p><img src="https://blog.52xks.cn/post-images/1600674235373.png" alt="" loading="lazy"><br>
+下载链接：https://im.qq.com/linuxqq/index.html<br>
+支持架构  可支持格式<br>
+x64         shell   rpm   deb   pacman<br>
+ARM64       shell   rpm   deb<br>
+MIPS64      shell   rpm deb<br>
+安装帮助：https://im.qq.com/linuxqq/download.html<br>
+Linux QQ 2.0.0 Beta2  2020/4/1<br>
+- 优化稳定性；<br>
+- 增加多人聊天会话支持。</p>
+<h2 id="百度云盘"><strong>百度云盘</strong></h2>
+<p><img src="https://blog.52xks.cn/post-images/1600674489266.png" alt="" loading="lazy"><br>
+下载链接：https://pan.baidu.com/download<br>
+大小：106 M         版本：Linux版 V3.4.1<br>
+适应系统：中标麒麟桌面操作系统软件（兆芯版） V7.0、Ubuntu V18.04、统信UOS V20<br>
+更新时间：2020-09-09<br>
+安装包格式：rpm     deb</p>
+<h2 id="360安全浏览器"><strong>360安全浏览器</strong></h2>
+<p><img src="https://blog.52xks.cn/post-images/1600674724380.png" alt="" loading="lazy"><br>
+下载链接：https://browser.360.cn/se/linux/index.html<br>
+版本号：V10.2.1006.16<br>
+支持平台：<br>
+银河麒麟 / deepin / 普华OS/中科方德 / 凝思磐石<br>
+中标麒麟 / 红旗Linux / 万里红/一铭OS</p>
+<h2 id="坚果云"><strong>坚果云</strong></h2>
+<p><img src="https://blog.52xks.cn/post-images/1600674967204.png" alt="" loading="lazy"><br>
+下载链接：https://www.jianguoyun.com/s/downloads<br>
+支持系统：Ubuntu  Fedora    Debian<br>
+安装帮助：https://www.jianguoyun.com/s/downloads/linux</p>
+<h2 id="腾讯视频"><strong>腾讯视频</strong></h2>
+<p><img src="https://blog.52xks.cn/post-images/1600675352822.png" alt="" loading="lazy"><br>
+下载链接：http://v.qq.com/download.html#Linux<br>
+大小：10.0MB 版本号：V1.0.10 更新日期：2019-12-27<br>
+文件格式：rpm   deb</p>
+<h2 id="360安全卫士"><strong>360安全卫士</strong></h2>
+<p><img src="https://blog.52xks.cn/post-images/1600675593888.png" alt="" loading="lazy"><br>
+下载链接：http://chinaossafe.360.cn/index.html<br>
+支持平台：Deepin    中标麒麟       QOMO</p>
+<h2 id="中望cad"><strong>中望CAD</strong></h2>
+<p><img src="https://blog.52xks.cn/post-images/1600675819048.png" alt="" loading="lazy"><br>
+下载链接：https://www.zwcad.com/product/cad_linux.html<br>
+支持系统：UOS   KYLIN   deepin  中科麒麟  ……<br>
+支持CPU：鲲鹏、飞腾、兆芯、海光、龙芯  ……<br>
+文件格式：rpm   deb</p>
+<h2 id="立创eda"><strong>立创EDA</strong></h2>
+<p><img src="https://blog.52xks.cn/post-images/1600680502363.png" alt="" loading="lazy"><br>
+下载链接：https://lceda.cn/page/download</p>
+<h2 id="vnote"><strong>VNote</strong></h2>
+<p><img src="https://blog.52xks.cn/post-images/1600680683110.png" alt="" loading="lazy"><br>
+一个更懂程序员和Markdown的笔记！<br>
+下载链接：https://tamlok.gitee.io/vnote/zh_cn/#!downloads.md#toc_4</p>
+<h2 id="listen-1"><strong>Listen 1</strong></h2>
+<p><img src="https://blog.52xks.cn/post-images/1600680877050.png" alt="" loading="lazy"><br>
+下载链接：http://listen1.github.io/listen1/</p>
+<h2 id="已知的其他软件但官网未找到讯飞输入法-微信">已知的其他软件但官网未找到：讯飞输入法、微信……</h2>
+<p>期待更多的国产软件适配！！</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[CentOS_8 搭建 Zabbix_5]]></title>
+        <id>https://blog.52xks.cn/post/centos_8-da-jian-zabbix_5/</id>
+        <link href="https://blog.52xks.cn/post/centos_8-da-jian-zabbix_5/">
+        </link>
+        <updated>2020-09-18T03:32:14.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[-bash:fork:无法分配内存]]></title>
+        <id>https://blog.52xks.cn/post/-bashforkwu-fa-fen-pei-nei-cun/</id>
+        <link href="https://blog.52xks.cn/post/-bashforkwu-fa-fen-pei-nei-cun/">
+        </link>
+        <updated>2020-07-07T02:12:08.000Z</updated>
+        <content type="html"><![CDATA[<h6 id="由于系统内存不足需多敲击几次命令才会显示内存使用情况">由于系统内存不足，需多敲击几次命令，才会显示内存使用情况</h6>
+<p>sysctl kernel.pid_max     查看系统最大pid使用数<br>
+ps -eLf | wc -l                 查看当前使用的pid数<br>
+可以看出确实接近系统设置的最大pid个数</p>
+<p>修改系统最大进程数 pid_max，配置文件sysctl.conf在/etc/sysctl.conf中</p>
+<p>①当此生效：      输入   echo  1000000 &gt; /proc/sys/kernel/pid_max</p>
+<p>②永久生效：      输入   echo “kernel.pid_max = 1000000” &gt;&gt; /etc/sysctl.conf  ; sysctl -p</p>
+<p><strong>解决方案：</strong><br>
+cat  /proc/sys/kernel/pid_max<br>
+1000000</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Hello Gridea]]></title>
+        <id>https://blog.52xks.cn/post/hello-gridea/</id>
+        <link href="https://blog.52xks.cn/post/hello-gridea/">
+        </link>
+        <updated>2018-12-11T16:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<p>👏  欢迎使用 <strong>Gridea</strong> ！<br>
+✍️  <strong>Gridea</strong> 一个静态博客写作客户端。你可以用它来记录你的生活、心情、知识、笔记、创意... ...</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>👏  欢迎使用 <strong>Gridea</strong> ！<br>
+✍️  <strong>Gridea</strong> 一个静态博客写作客户端。你可以用它来记录你的生活、心情、知识、笔记、创意... ...</p>
+<!-- more -->
+<p><a href="https://github.com/getgridea/gridea">Github</a><br>
+<a href="https://gridea.dev/">Gridea 主页</a><br>
+<a href="http://fehey.com/">示例网站</a></p>
+<h2 id="特性">特性👇</h2>
+<p>📝  你可以使用最酷的 <strong>Markdown</strong> 语法，进行快速创作</p>
+<p>🌉  你可以给文章配上精美的封面图和在文章任意位置插入图片</p>
+<p>🏷️  你可以对文章进行标签分组</p>
+<p>📋  你可以自定义菜单，甚至可以创建外部链接菜单</p>
+<p>💻  你可以在 <strong>Windows</strong>，<strong>MacOS</strong> 或 <strong>Linux</strong> 设备上使用此客户端</p>
+<p>🌎  你可以使用 <strong>𝖦𝗂𝗍𝗁𝗎𝖻 𝖯𝖺𝗀𝖾𝗌</strong> 或 <strong>Coding Pages</strong> 向世界展示，未来将支持更多平台</p>
+<p>💬  你可以进行简单的配置，接入 <a href="https://github.com/gitalk/gitalk">Gitalk</a> 或 <a href="https://github.com/SukkaW/DisqusJS">DisqusJS</a> 评论系统</p>
+<p>🇬🇧  你可以使用<strong>中文简体</strong>或<strong>英语</strong></p>
+<p>🌁  你可以任意使用应用内默认主题或任意第三方主题，强大的主题自定义能力</p>
+<p>🖥  你可以自定义源文件夹，利用 OneDrive、百度网盘、iCloud、Dropbox 等进行多设备同步</p>
+<p>🌱 当然 <strong>Gridea</strong> 还很年轻，有很多不足，但请相信，它会不停向前 🏃</p>
+<p>未来，它一定会成为你离不开的伙伴</p>
+<p>尽情发挥你的才华吧！</p>
+<p>😘 Enjoy~</p>
+]]></content>
+    </entry>
+</feed>
